@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HelloWorldController::class, 'index']);
 
+Route::get('/users/{id}/friends', function ($id) {
+    return "User $id's friends";
+});
+
 // Route::post('/', function() {
 //     return 'This is a post route';
 // });
