@@ -1,3 +1,3 @@
 <div>
-    Hello World!
+    Hello World from Route Handling!
 </div>
