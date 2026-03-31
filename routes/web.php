@@ -9,6 +9,10 @@ Route::get('/users/{id}/friends', function ($id) {
     return "User $id's friends";
 });
 
+Route::get('users/{id?}', function ($id = 'default') {
+    return "User $id";
+});
+
 // Route::post('/', function() {
 //     return 'This is a post route';
 // });
