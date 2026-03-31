@@ -11,7 +11,7 @@ Route::get('/users/{id}/friends', function ($id) {
 
 Route::get('users/{id?}', function ($id = 'default') {
     return "User $id";
-});
+})->where('id', '[0-9]+');
 
 // Route::post('/', function() {
 //     return 'This is a post route';
