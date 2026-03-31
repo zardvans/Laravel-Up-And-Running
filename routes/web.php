@@ -5,13 +5,29 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HelloWorldController::class, 'index']);
 
-Route::get('/users/{id}/friends', function ($id) {
-    return "User $id's friends";
-});
+Route::get('/users/{id}/friends/{friendname}', function ($id, $friendname) {
+    return "User $id's friend $friendname";
+})->whereNumber('id')->whereAlpha('friendname');
 
-Route::get('users/{id?}', function ($id = 'default') {
+Route::get('/users/{name}', function ($name) {
+    return "User $name";
+})->whereAlphaNumeric('name');
+
+Route::get('/users/{id}', function ($id) {
     return "User $id";
-})->where('id', '[0-9]+');
+})->whereUuid('id');
+
+Route::get('/users/{id}', function ($id) {
+    return "User $id";
+})->whereUlid('id');
+
+Route::get('/friends/types/{type}', function ($type) {
+    return "Friend type $type";
+})->whereIn('type', ['acquaintance', 'bestie', 'frenemy']);
+
+// Route::get('users/{id?}', function ($id = 'default') {
+//     return "User $id";
+// })->where('id', '[0-9]+');
 
 // Route::post('/', function() {
 //     return 'This is a post route';
