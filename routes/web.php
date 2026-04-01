@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,12 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/{id}', 'show');
 });
+
+Route::fallback(function () {
+    return 'This is a fallback route.';
+});
+
+Route::get('invitations/{invitation}/{answer}', InvitationController::class)->name('invitations')->middleware('signed');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
