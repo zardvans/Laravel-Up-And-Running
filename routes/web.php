@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -39,6 +40,11 @@ Route::name('users.')->prefix('users')->group(function () {
             return "this is user.comments.destroy with id: $id";
         })->name('destroy');
     });
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('/{id}', 'show');
 });
 
 // Route::get('/dashboard', function () {
