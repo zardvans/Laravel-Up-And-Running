@@ -16,6 +16,20 @@ Route::prefix('dashboard')->group(function () {
     });
 });
 
+Route::domain('api.laravel-up-and-running.test')->group(function () {
+    Route::get('/', function () {
+        return 'API Users';
+    });
+});
+Route::domain('{account}.laravel-up-and-running.test')->group(function () {
+    Route::get('/', function ($account) {
+        return "Account Name: $account";
+    });
+    Route::get('/users/{id}', function ($account, $id) {
+        return "Account Name: $account, User ID: $id";
+    });
+});
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
