@@ -30,6 +30,17 @@ Route::domain('{account}.laravel-up-and-running.test')->group(function () {
     });
 });
 
+Route::name('users.')->prefix('users')->group(function () {
+    Route::name('comments')->prefix('comments')->group(function () {
+        Route::get('{id}', function ($id) {
+            return 'this is user.comments.show with id: ' . $id;
+        })->name('show');
+        Route::delete('/{id}', function ($id) {
+            return "this is user.comments.destroy with id: $id";
+        })->name('destroy');
+    });
+});
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
