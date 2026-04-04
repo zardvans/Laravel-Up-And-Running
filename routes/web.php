@@ -66,6 +66,10 @@ Route::get('redirect', function () {
     return redirect()->to('home');
 });
 
+Route::get('redirect', function () {
+    return redirect()->route('tasks.index');
+});
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
