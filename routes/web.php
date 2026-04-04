@@ -62,6 +62,10 @@ Route::prefix('tasks')->controller(TaskController::class)->group(function () {
     Route::post('/', 'store');
 });
 
+Route::get('redirect', function () {
+    return redirect()->to('home');
+});
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
