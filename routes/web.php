@@ -11,52 +11,56 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('dashboard')->group(function () {
-    Route::get('/', function () {
-        return 'Path is /dashboard';
-    });
-    Route::get('users', function () {
-        return 'Path is /dashboard/users';
-    });
-});
+// Route::prefix('dashboard')->group(function () {
+//     Route::get('/', function () {
+//         return 'Path is /dashboard';
+//     });
+//     Route::get('users', function () {
+//         return 'Path is /dashboard/users';
+//     });
+// });
 
-Route::domain('api.laravel-up-and-running.test')->group(function () {
-    Route::get('/', function () {
-        return 'API Users';
-    });
-});
-Route::domain('{account}.laravel-up-and-running.test')->group(function () {
-    Route::get('/', function ($account) {
-        return "Account Name: $account";
-    });
-    Route::get('/users/{id}', function ($account, $id) {
-        return "Account Name: $account, User ID: $id";
-    });
-});
+// Route::domain('api.laravel-up-and-running.test')->group(function () {
+//     Route::get('/', function () {
+//         return 'API Users';
+//     });
+// });
+// Route::domain('{account}.laravel-up-and-running.test')->group(function () {
+//     Route::get('/', function ($account) {
+//         return "Account Name: $account";
+//     });
+//     Route::get('/users/{id}', function ($account, $id) {
+//         return "Account Name: $account, User ID: $id";
+//     });
+// });
 
-Route::name('users.')->prefix('users')->group(function () {
-    Route::name('comments')->prefix('comments')->group(function () {
-        Route::get('{id}', function ($id) {
-            return 'this is user.comments.show with id: ' . $id;
-        })->name('show');
-        Route::delete('/{id}', function ($id) {
-            return "this is user.comments.destroy with id: $id";
-        })->name('destroy');
-    });
-});
+// Route::name('users.')->prefix('users')->group(function () {
+//     Route::name('comments')->prefix('comments')->group(function () {
+//         Route::get('{id}', function ($id) {
+//             return 'this is user.comments.show with id: ' . $id;
+//         })->name('show');
+//         Route::delete('/{id}', function ($id) {
+//             return "this is user.comments.destroy with id: $id";
+//         })->name('destroy');
+//     });
+// });
 
-Route::controller(UserController::class)->group(function () {
+// Route::controller(UserController::class)->group(function () {
+//     Route::get('/', 'index');
+//     Route::get('/{id}', 'show');
+// });
+
+// Route::fallback(function () {
+//     return 'This is a fallback route.';
+// });
+
+// Route::get('invitations/{invitation}/{answer}', InvitationController::class)->name('invitations')->middleware('signed');
+
+Route::prefix('tasks')->controller(TaskController::class)->group(function () {
     Route::get('/', 'index');
-    Route::get('/{id}', 'show');
+    Route::get('/create', 'create');
+    Route::post('/', 'store');
 });
-
-Route::fallback(function () {
-    return 'This is a fallback route.';
-});
-
-Route::get('invitations/{invitation}/{answer}', InvitationController::class)->name('invitations')->middleware('signed');
-
-Route::get('/tasks', [TaskController::class, 'index']);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
