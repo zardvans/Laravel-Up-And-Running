@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Routing\Router;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,6 +55,8 @@ Route::fallback(function () {
 });
 
 Route::get('invitations/{invitation}/{answer}', InvitationController::class)->name('invitations')->middleware('signed');
+
+Route::get('/tasks', [TaskController::class, 'index']);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
