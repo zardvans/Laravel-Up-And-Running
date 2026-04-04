@@ -70,6 +70,12 @@ Route::get('redirect', function () {
     return redirect()->route('tasks.index');
 });
 
+Route::get('form', function () {
+    return redirect('form')
+        ->withInput()
+        ->with('success', 'Form submitted successfully!');
+});
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
