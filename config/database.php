@@ -144,6 +144,7 @@ return [
     */
 
     'redis' => [
+        'cluster' => 'redis',
 
         'client' => env('REDIS_CLIENT', 'phpredis'),
 
@@ -179,6 +180,7 @@ return [
             'backoff_cap' => env('REDIS_BACKOFF_CAP', 1000),
         ],
 
+        'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
     ],
 
 ];
